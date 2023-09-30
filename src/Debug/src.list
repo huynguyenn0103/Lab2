@@ -37,13 +37,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_macro  000162b2  00000000  00000000  0002af10  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00009528  00000000  00000000  000411c2  2**0
+ 17 .debug_line   0000952c  00000000  00000000  000411c2  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    00081fab  00000000  00000000  0004a6ea  2**0
+ 18 .debug_str    00081fab  00000000  00000000  0004a6ee  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000053  00000000  00000000  000cc695  2**0
+ 19 .comment      00000053  00000000  00000000  000cc699  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  000026e4  00000000  00000000  000cc6e8  2**2
+ 20 .debug_frame  000026e4  00000000  00000000  000cc6ec  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -190,45 +190,45 @@ int main(void)
  80001dc:	681b      	ldr	r3, [r3, #0]
  80001de:	2b01      	cmp	r3, #1
  80001e0:	d1d9      	bne.n	8000196 <main+0x4a>
-		  if(second >= 60){
+		  second++;
  80001e2:	687b      	ldr	r3, [r7, #4]
- 80001e4:	2b3b      	cmp	r3, #59	; 0x3b
- 80001e6:	dd04      	ble.n	80001f2 <main+0xa6>
+ 80001e4:	3301      	adds	r3, #1
+ 80001e6:	607b      	str	r3, [r7, #4]
+		  if(second >= 60){
+ 80001e8:	687b      	ldr	r3, [r7, #4]
+ 80001ea:	2b3b      	cmp	r3, #59	; 0x3b
+ 80001ec:	dd04      	ble.n	80001f8 <main+0xac>
 			  second = 0;
- 80001e8:	2300      	movs	r3, #0
- 80001ea:	607b      	str	r3, [r7, #4]
+ 80001ee:	2300      	movs	r3, #0
+ 80001f0:	607b      	str	r3, [r7, #4]
 			  minute++;
- 80001ec:	68bb      	ldr	r3, [r7, #8]
- 80001ee:	3301      	adds	r3, #1
- 80001f0:	60bb      	str	r3, [r7, #8]
+ 80001f2:	68bb      	ldr	r3, [r7, #8]
+ 80001f4:	3301      	adds	r3, #1
+ 80001f6:	60bb      	str	r3, [r7, #8]
 		  }
 		  if(minute >= 60){
- 80001f2:	68bb      	ldr	r3, [r7, #8]
- 80001f4:	2b3b      	cmp	r3, #59	; 0x3b
- 80001f6:	dd04      	ble.n	8000202 <main+0xb6>
+ 80001f8:	68bb      	ldr	r3, [r7, #8]
+ 80001fa:	2b3b      	cmp	r3, #59	; 0x3b
+ 80001fc:	dd04      	ble.n	8000208 <main+0xbc>
 			  minute = 0;
- 80001f8:	2300      	movs	r3, #0
- 80001fa:	60bb      	str	r3, [r7, #8]
+ 80001fe:	2300      	movs	r3, #0
+ 8000200:	60bb      	str	r3, [r7, #8]
 			  hour++;
- 80001fc:	68fb      	ldr	r3, [r7, #12]
- 80001fe:	3301      	adds	r3, #1
- 8000200:	60fb      	str	r3, [r7, #12]
+ 8000202:	68fb      	ldr	r3, [r7, #12]
+ 8000204:	3301      	adds	r3, #1
+ 8000206:	60fb      	str	r3, [r7, #12]
 		  }
 		  if(hour >= 24){
- 8000202:	68fb      	ldr	r3, [r7, #12]
- 8000204:	2b17      	cmp	r3, #23
- 8000206:	dd01      	ble.n	800020c <main+0xc0>
+ 8000208:	68fb      	ldr	r3, [r7, #12]
+ 800020a:	2b17      	cmp	r3, #23
+ 800020c:	dd01      	ble.n	8000212 <main+0xc6>
 			  hour = 0;
- 8000208:	2300      	movs	r3, #0
- 800020a:	60fb      	str	r3, [r7, #12]
+ 800020e:	2300      	movs	r3, #0
+ 8000210:	60fb      	str	r3, [r7, #12]
 		  }
-		  second++;
- 800020c:	687b      	ldr	r3, [r7, #4]
- 800020e:	3301      	adds	r3, #1
- 8000210:	607b      	str	r3, [r7, #4]
-		  updateClockBuffer(hour, minute);
- 8000212:	68b9      	ldr	r1, [r7, #8]
- 8000214:	68f8      	ldr	r0, [r7, #12]
+		  updateClockBuffer(minute, second);
+ 8000212:	6879      	ldr	r1, [r7, #4]
+ 8000214:	68b8      	ldr	r0, [r7, #8]
  8000216:	f000 f9f3 	bl	8000600 <updateClockBuffer>
 		  setTimer3(100);
  800021a:	2064      	movs	r0, #100	; 0x64

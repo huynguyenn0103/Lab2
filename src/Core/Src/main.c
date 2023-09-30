@@ -118,6 +118,7 @@ int main(void)
 	  	  setTimer2(100);
 	  }
 	  if (timer3_flag == 1){
+		  second++;
 		  if(second >= 60){
 			  second = 0;
 			  minute++;
@@ -129,8 +130,7 @@ int main(void)
 		  if(hour >= 24){
 			  hour = 0;
 		  }
-		  second++;
-		  updateClockBuffer(hour, minute);
+		  updateClockBuffer(minute, second);
 		  setTimer3(100);
 	  }
     /* USER CODE BEGIN 3 */
