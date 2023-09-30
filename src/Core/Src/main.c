@@ -130,7 +130,7 @@ int main(void)
 		  if(hour >= 24){
 			  hour = 0;
 		  }
-		  updateClockBuffer(minute, second);
+		  updateClockBuffer(hour, minute);
 		  setTimer3(100);
 	  }
     /* USER CODE BEGIN 3 */

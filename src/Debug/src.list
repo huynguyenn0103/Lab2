@@ -226,9 +226,9 @@ int main(void)
  800020e:	2300      	movs	r3, #0
  8000210:	60fb      	str	r3, [r7, #12]
 		  }
-		  updateClockBuffer(minute, second);
- 8000212:	6879      	ldr	r1, [r7, #4]
- 8000214:	68b8      	ldr	r0, [r7, #8]
+		  updateClockBuffer(hour, minute);
+ 8000212:	68b9      	ldr	r1, [r7, #8]
+ 8000214:	68f8      	ldr	r0, [r7, #12]
  8000216:	f000 f9f3 	bl	8000600 <updateClockBuffer>
 		  setTimer3(100);
  800021a:	2064      	movs	r0, #100	; 0x64
