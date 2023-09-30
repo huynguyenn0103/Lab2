@@ -59,7 +59,7 @@ void update7SEG(int);
 /* USER CODE BEGIN 0 */
 const int MAX_LED = 4;
 int index_led = 0;
-int led_buffer[4] = {2,4,0,3};
+int led_buffer[4] = {1,2,3,0};
 /* USER CODE END 0 */
 
 /**
@@ -97,17 +97,23 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setTimer1(100);
+  setTimer1(25);
+  setTimer2(100);
   update7SEG(index_led++);
   while (1)
   {
     /* USER CODE END WHILE */
 	  if(timer1_flag == 1){
-		  setTimer1(100);
+
 		  if(index_led >= MAX_LED){
 			  index_led = 0;
 		  }
 		  update7SEG(index_led++);
+		  setTimer1(25);
+	  }
+	  if (timer2_flag == 1){
+	  	  HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
+	  	  setTimer2(100);
 	  }
     /* USER CODE BEGIN 3 */
   }
