@@ -100,11 +100,11 @@ int main(void)
   {
     /* USER CODE END WHILE */
 	  if(timer1_flag == 1){
+		  setTimer1(50);
 		  HAL_GPIO_TogglePin(EN0_GPIO_Port, EN0_Pin);
 		  HAL_GPIO_TogglePin(EN1_GPIO_Port, EN1_Pin);
 		  current = 3 - current;
 		  display7SEG(current);
-		  setTimer1(50);
 	  }
     /* USER CODE BEGIN 3 */
   }
