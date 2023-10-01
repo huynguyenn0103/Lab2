@@ -385,12 +385,14 @@ void updateColumn(uint8_t hexValue){
 	HAL_GPIO_WritePin(GPIOA, ENM6_Pin, (int)(hexValue >> 1) & 1);
 	HAL_GPIO_WritePin(GPIOA, ENM7_Pin, (int)(hexValue >> 0) & 1);
 }
+uint8_t tmp = 0;
 void updateLEDMatrix(int index){
 	switch (index) {
 		case 0:
 			HAL_GPIO_WritePin(GPIOB, ROW0_Pin, GPIO_PIN_RESET);
 			HAL_GPIO_WritePin(GPIOB, ROW1_Pin|ROW2_Pin|ROW3_Pin|ROW4_Pin|ROW5_Pin|ROW6_Pin|ROW7_Pin, GPIO_PIN_SET);
 			updateColumn(matrix_buffer[0]);
+			tmp = matrix_buffer[0];
 			break;
 		case 1:
 			HAL_GPIO_WritePin(GPIOB, ROW1_Pin, GPIO_PIN_RESET);
@@ -430,6 +432,13 @@ void updateLEDMatrix(int index){
 		default:
 			break;
 	}
+	if(index >= 7){
+		matrix_buffer[index] = tmp;
+	}
+	else {
+		matrix_buffer[index] = matrix_buffer[index + 1];
+	}
+
 }
 /* USER CODE END 4 */
 

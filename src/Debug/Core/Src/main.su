@@ -7,5 +7,5 @@ main.c:297:6:display7SEG	16	static
 main.c:340:6:update7SEG	16	static
 main.c:371:6:updateClockBuffer	16	static
 main.c:378:6:updateColumn	16	static
-main.c:388:6:updateLEDMatrix	16	static
-main.c:440:6:Error_Handler	4	static,ignoring_inline_asm
+main.c:389:6:updateLEDMatrix	16	static
+main.c:449:6:Error_Handler	4	static,ignoring_inline_asm
